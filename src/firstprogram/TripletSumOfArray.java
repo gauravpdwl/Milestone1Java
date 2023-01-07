@@ -48,35 +48,47 @@ public class TripletSumOfArray {
             t -= 1;
         }
     }
-    
+    	
     public class Solution {	
 
     	public static int tripletSum(int[] arr, int num) {
-    		
-    		
+    		int i=0;
+    		int j=i+1;
+    		int k=j+1;
     		int count=0;
     		
-    		for(int i=0;i<arr.length;i++) {
-    			arr[i]=num-arr[i];
-    		}
-    		
-    		Arrays.sort(arr);
-    		
-    		for(int i=0;i<arr.length;i++) {
-    			int localCount=0;
-    			int pairno=arr[i];
-    			localCount=pairSum(arr, i+1, pairno);
-    			count=count+localCount;
+    		while(i<arr.length-2 || j<arr.length-1 || k<arr.length) {
+    			
+    			if(k==arr.length) {
+    				j++;
+    				if(j<arr.length-1) {
+    					k=j+1;
+    				}
+    			}
+    			
+    			if(j==arr.length-1) {
+    				i++;
+    				
+    				if(i<arr.length-2) {
+    					j=i+1;
+    				}
+    				if(j<arr.length-1) {
+    					k=j+1;
+    				}
+    			}
+    			
+    			if(i==arr.length-2 && j==arr.length-1 && k==arr.length) {
+    				break;
+    			}
+    			
+    			
+    			if((arr[i]+arr[j]+arr[k])==num) {
+    				count++;
+    			}
+    			k++;
     		}
     		
     		return count;
-    	}
-    	
-    	public static int pairSum(int []arr, int start, int num) {
-    		
-    		
-    		
-    		return 1;
-    	}
     }
-}
+}   
+}    
